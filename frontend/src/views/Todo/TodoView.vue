@@ -2,7 +2,10 @@
     <main>
         <h1>ToDo</h1>
 
-        <ul>
+        <span v-if='loading'>
+            Loading
+        </span>
+        <ul v-else>
             <li v-for='todo in todos' :key='todo.id'>
                 {{ todo.title }}
             </li>
@@ -36,8 +39,11 @@ export default {
         // }
 
         const todos = ref([])
+        const loading = ref(false)
 
         onMounted(() => {
+            loading.value = true
+
             TodoService.getAll()
                 .then(response => {
                     todos.value = response.data.data
@@ -45,10 +51,14 @@ export default {
                 .catch(error => {
                     console.log(error)
                 })
+                .finally(() => {
+                    loading.value = false
+                })
         })
 
         return {
             todos,
+            loading
         }
     }
 }
