@@ -10,7 +10,7 @@
         </span>
         <ul v-else>
             <li v-for='todo in todos' :key='todo.id'>
-                <todo :todo='todo' />
+                <todo :todo='todo' @deletedTodo='deleteTodoFromList'/>
             </li>
         </ul>
     </main>
@@ -58,9 +58,15 @@ export default {
                 })
         })
 
+        const deleteTodoFromList = (todo) => {
+            const index = todos.value.indexOf(todo)
+            todos.value.splice(index, 1)
+        }
+
         return {
             todos,
-            loading
+            loading,
+            deleteTodoFromList,
         }
     },
 
