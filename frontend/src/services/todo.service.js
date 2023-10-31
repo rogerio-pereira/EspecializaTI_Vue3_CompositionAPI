@@ -8,4 +8,12 @@ export default class TodoService {
     static async addTodo(data) {
         return axios.post('/todos', data)
     }
+
+    static async getTodo(id) {
+        return axios.get('/todos/'+id)
+    }
+
+    static async updateTodo(id, data) {
+        return axios.put('/todos/'+id, data)
+    }
 }
