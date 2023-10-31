@@ -1,6 +1,9 @@
 <template>
     <main>
-        <h1>ToDo</h1>
+        <h1>
+            ToDo
+            <router-link :to="{ name: 'todo.create' }">+</router-link>
+        </h1>
 
         <span v-if='loading'>
             Loading
@@ -11,8 +14,6 @@
             </li>
         </ul>
     </main>
-
-    <input type='text' v-model='name' />
 </template>
 
 <script>
