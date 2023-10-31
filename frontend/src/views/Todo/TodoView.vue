@@ -10,7 +10,7 @@
         </span>
         <ul v-else>
             <li v-for='todo in todos' :key='todo.id'>
-                {{ todo.title }}
+                <todo :todo='todo' />
             </li>
         </ul>
     </main>
@@ -19,6 +19,7 @@
 <script>
 import { onMounted, ref } from 'vue'
 import TodoService from '@/services/todo.service'
+import Todo from './components/Todo.vue'
 
 export default {
     name: 'Todos',
@@ -61,6 +62,10 @@ export default {
             todos,
             loading
         }
+    },
+
+    components: {
+        Todo
     }
 }
 </script>
